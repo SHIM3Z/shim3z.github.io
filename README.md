@@ -180,17 +180,10 @@ Para solicitar acceso a una demostración en vivo o más información sobre el p
 
 ## 📞 Contacto
 
-- **Proyecto**: Maestría en [Tu Universidad]
+- **Email**: paolosz.contact@gmail.com 
+- **Proyecto**: Predicción de arritmias cardiacas y moleculas de sangre
 - **Año**: 2025
-- **Tipo**: Tesis/Proyecto de Investigación
-
----
-
-## 🙏 Agradecimientos
-
-- Dataset **BloodMNIST** por MedMNIST
-- Comunidad de **Angular**
-- Librerías open-source utilizadas
+- **Tipo**: Proyecto Machine Learning
 
 ---
 
