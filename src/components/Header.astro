@@ -1,0 +1,264 @@
+---
+const navItems = [
+  { id: "experience", label: "Trayectoria" },
+  { id: "education", label: "Estudios" },
+  { id: "projects", label: "Proyectos" },
+];
+---
+
+<!-- HEADER FLOTANTE (CÁPSULA) -->
+<nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+  <div
+    class="bg-slate-900/70 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 shadow-2xl shadow-black/50 flex items-center gap-1 md:gap-2 max-w-fit"
+  >
+    <!-- Logo (Botón Home) -->
+    <a
+      href="#about"
+      data-section="about"
+      class="nav-link flex items-center gap-2 pl-4 pr-2 hover:opacity-80 transition-opacity"
+    >
+      <div
+        class="w-8 h-8 rounded-full bg-linear-to-tr from-blue-600 to-purple-600 p-0.5 shadow-lg shadow-blue-500/20"
+      >
+        <img
+          src="https://github.com/SHIM3Z.png"
+          alt="Logo"
+          class="w-full h-full rounded-full object-cover"
+        />
+      </div>
+      <span class="hidden md:block font-bold text-white text-sm tracking-tight"
+        >Paolo</span
+      >
+    </a>
+
+    <div class="h-6 w-px bg-white/10 mx-2 hidden md:block"></div>
+
+    <!-- Menú Desktop -->
+    <div class="hidden md:flex items-center gap-1">
+      {
+        navItems.map((item) => (
+          <a
+            href={`#${item.id}`}
+            data-section={item.id}
+            class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 text-slate-400 hover:text-white hover:bg-white/5"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Botón Docs Destacado -->
+    <a
+      href="/docs"
+      class="ml-1 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-300 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-transparent hover:border-white/10"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+        ></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" x2="8" y1="13" y2="13"></line>
+        <line x1="16" x2="8" y1="17" y2="17"></line>
+        <line x1="10" x2="8" y1="9" y2="9"></line>
+      </svg>
+      <span class="hidden sm:inline">Docs</span>
+    </a>
+
+    <!-- Menú Mobile Toggle -->
+    <button
+      id="mobile-toggle"
+      class="md:hidden p-3 rounded-full text-slate-300 hover:bg-white/10 ml-2"
+    >
+      <svg
+        id="menu-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <svg
+        id="close-icon"
+        class="hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div
+    id="mobile-menu"
+    class="hidden absolute top-full mt-4 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex-col gap-2 shadow-2xl w-64"
+  >
+    <a
+      href="#about"
+      class="mobile-link text-left px-4 py-3 rounded-xl hover:bg-white/5 text-slate-300"
+      >Sobre mí</a
+    >
+    {
+      navItems.map((item) => (
+        <a
+          href={`#${item.id}`}
+          class="mobile-link text-left px-4 py-3 rounded-xl hover:bg-white/5 text-slate-300"
+        >
+          {item.label}
+        </a>
+      ))
+    }
+    <a
+      href="/docs"
+      class="mobile-link text-left px-4 py-3 rounded-xl hover:bg-white/5 text-slate-300"
+      >Docs</a
+    >
+  </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileToggle = document.getElementById("mobile-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    // Toggle menú móvil
+    mobileToggle?.addEventListener("click", () => {
+      const isHidden = mobileMenu?.classList.contains("hidden");
+      if (isHidden) {
+        mobileMenu?.classList.remove("hidden");
+        mobileMenu?.classList.add("flex");
+        menuIcon?.classList.add("hidden");
+        closeIcon?.classList.remove("hidden");
+      } else {
+        mobileMenu?.classList.add("hidden");
+        mobileMenu?.classList.remove("flex");
+        menuIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+      }
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu?.classList.add("hidden");
+        mobileMenu?.classList.remove("flex");
+        menuIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+      });
+    });
+
+    // Scroll spy - detectar sección activa
+    const sections = ["about", "experience", "education", "projects"];
+
+    function updateActiveSection() {
+      let activeSection = "about"; // Default
+
+      // Recorrer todas las secciones desde el final para encontrar la activa
+      // (la última sección cuyo top esté por encima del scroll actual)
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const element = document.getElementById(section);
+
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Si el top de la sección está por encima del 30% del viewport
+          if (rect.top <= window.innerHeight * 0.3) {
+            activeSection = section;
+            break;
+          }
+        }
+      }
+
+      // Actualizar estilos de todos los links
+      navLinks.forEach((link) => {
+        const linkSection = link.getAttribute("data-section");
+
+        // Remover todas las clases
+        link.classList.remove("bg-white/10", "text-white", "shadow-inner");
+        link.classList.remove("bg-blue-600", "shadow-lg", "shadow-blue-500/25");
+        link.classList.remove(
+          "text-slate-400",
+          "bg-slate-800",
+          "text-slate-300",
+          "opacity-100",
+          "opacity-80"
+        );
+
+        if (linkSection === activeSection) {
+          // Aplicar estilos activos
+          if (linkSection === "docs") {
+            link.classList.add(
+              "bg-blue-600",
+              "text-white",
+              "shadow-lg",
+              "shadow-blue-500/25"
+            );
+          } else if (linkSection === "about") {
+            // Para el logo, solo aumentar opacidad
+            link.classList.add("opacity-100");
+          } else {
+            link.classList.add("bg-white/10", "text-white", "shadow-inner");
+          }
+        } else {
+          // Aplicar estilos inactivos
+          if (linkSection === "docs") {
+            link.classList.add("bg-slate-800", "text-slate-300");
+          } else if (linkSection === "about") {
+            // Para el logo, reducir opacidad
+            link.classList.add("opacity-80");
+          } else {
+            link.classList.add("text-slate-400");
+          }
+        }
+      });
+    }
+
+    // Throttle para mejor performance
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Ejecutar inmediatamente y después de un pequeño delay
+    updateActiveSection();
+    setTimeout(updateActiveSection, 100);
+  });
+</script>
