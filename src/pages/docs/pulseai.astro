@@ -3,9 +3,10 @@ import Layout from "../../layouts/Layout.astro";
 
 const tableOfContents = [
   { id: "introduccion", label: "Introducción", active: true },
+  { id: "que-analiza", label: "¿Qué analiza?", active: false },
   { id: "arquitectura", label: "Arquitectura", active: false },
   { id: "instalacion", label: "Instalación", active: false },
-  { id: "modelo-ia", label: "Modelo de IA", active: false },
+  { id: "modelo-ia", label: "Modelos de IA", active: false },
   { id: "api-endpoints", label: "API Endpoints", active: false },
 ];
 ---
@@ -43,7 +44,7 @@ const tableOfContents = [
         <span class="font-bold text-white text-lg">PulseAI Docs</span>
       </div>
       <div class="flex gap-4 text-sm font-medium">
-        <span class="hidden md:block text-slate-400">v1.2.0</span>
+        <span class="hidden md:block text-slate-400">v2.0</span>
         <a
           href="https://github.com/SHIM3Z"
           target="_blank"
@@ -107,214 +108,245 @@ const tableOfContents = [
             id="introduccion"
             class="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            PulseAI: Diagnóstico Asistido
+            PulseAI: Diagnóstico Asistido por IA
           </h1>
           <p class="text-xl text-slate-400 leading-relaxed">
-            PulseAI es un sistema de soporte a la decisión clínica que utiliza
-            redes neuronales convolucionales (CNN) para detectar anomalías en
-            electrocardiogramas (ECG) y frotis sanguíneos.
+            PulseAI es una plataforma web de apoyo al diagnóstico médico basada en inteligencia artificial.
+            Permite analizar señales cardíacas (ECG) e imágenes de células sanguíneas, entregando predicciones
+            con nivel de confianza y explicaciones en lenguaje natural. No reemplaza el criterio médico;
+            actúa como herramienta de apoyo.
           </p>
           <div class="flex flex-wrap gap-4 mt-6">
-            <span
-              class="px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20"
-              >Angular 17</span
-            >
-            <span
-              class="px-3 py-1 rounded bg-yellow-500/10 text-yellow-400 text-xs font-bold border border-yellow-500/20"
-              >Python FastAPI</span
-            >
-            <span
-              class="px-3 py-1 rounded bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20"
-              >TensorFlow</span
-            >
+            <span class="px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-bold border border-blue-500/20">Angular 20</span>
+            <span class="px-3 py-1 rounded bg-yellow-500/10 text-yellow-400 text-xs font-bold border border-yellow-500/20">Python FastAPI</span>
+            <span class="px-3 py-1 rounded bg-purple-500/10 text-purple-400 text-xs font-bold border border-purple-500/20">TensorFlow / Keras</span>
+            <span class="px-3 py-1 rounded bg-green-500/10 text-green-400 text-xs font-bold border border-green-500/20">Docker</span>
+            <span class="px-3 py-1 rounded bg-orange-500/10 text-orange-400 text-xs font-bold border border-orange-500/20">Google Cloud Run</span>
           </div>
         </div>
 
         <div class="prose prose-invert max-w-none">
+
+          <!-- SECCIÓN QUÉ ANALIZA -->
+          <h2 id="que-analiza" class="text-2xl font-bold text-white mb-4 mt-12">
+            1. ¿Qué analiza?
+          </h2>
+
+          <h3 class="text-xl font-semibold text-white mb-3 mt-6">Análisis de Pulso Cardíaco (ECG)</h3>
+          <p class="mb-4 text-slate-300 leading-relaxed">
+            A partir de una señal eléctrica del corazón (electrocardiograma), el sistema evalúa cada latido
+            con datos reales del dataset <strong class="text-white">MIT-BIH</strong> y lo clasifica en:
+          </p>
+          <ul class="space-y-2 text-slate-300 mb-6">
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 mt-1">•</span>
+              <span><strong class="text-white">Latido Normal (N):</strong> Patrón eléctrico regular y saludable.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-yellow-500 mt-1">•</span>
+              <span><strong class="text-white">Latido Ventricular (V):</strong> Contracción prematura en los ventrículos, tipo de arritmia que puede requerir atención médica.</span>
+            </li>
+          </ul>
+
+          <h3 class="text-xl font-semibold text-white mb-3 mt-8">Análisis de Células Sanguíneas</h3>
+          <p class="mb-4 text-slate-300 leading-relaxed">
+            A partir de imágenes microscópicas (dataset <strong class="text-white">BloodMNIST / MedMNIST</strong>),
+            el sistema identifica 8 tipos de células:
+          </p>
+          <div class="overflow-x-auto mb-8">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-white/10">
+                  <th class="text-left py-2 px-4 text-slate-300 font-semibold">Célula</th>
+                  <th class="text-left py-2 px-4 text-slate-300 font-semibold">Función principal</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-400">
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Neutrófilo</td>
+                  <td class="py-2 px-4">Primera línea de defensa contra bacterias</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Linfocito</td>
+                  <td class="py-2 px-4">Combate virus y genera anticuerpos</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Monocito</td>
+                  <td class="py-2 px-4">Limpia células muertas e infecciones</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Eosinófilo</td>
+                  <td class="py-2 px-4">Combate parásitos y responde a alergias</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Basófilo</td>
+                  <td class="py-2 px-4">Involucrado en reacciones alérgicas</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Eritroblasto</td>
+                  <td class="py-2 px-4">Glóbulo rojo inmaduro (normalmente en médula ósea)</td>
+                </tr>
+                <tr class="border-b border-white/5 hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Granulocito Inmaduro</td>
+                  <td class="py-2 px-4">Precursor de glóbulos blancos</td>
+                </tr>
+                <tr class="hover:bg-white/5">
+                  <td class="py-2 px-4 text-white">Plaqueta</td>
+                  <td class="py-2 px-4">Coagulación y cicatrización</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <!-- SECCIÓN ARQUITECTURA -->
           <h2
             id="arquitectura"
             class="text-2xl font-bold text-white mb-4 mt-12"
           >
-            1. Arquitectura del Sistema
+            2. Arquitectura del Sistema
           </h2>
           <p class="mb-6 leading-relaxed text-slate-300">
-            El sistema sigue una arquitectura de microservicios contenerizados.
-            El frontend en Angular se comunica con un API Gateway que distribuye
-            la carga entre el servicio de autenticación y el servicio de
-            inferencia de IA.
+            El backend está construido como una API REST que al iniciar carga en memoria dos modelos de redes
+            neuronales y los datasets de referencia. El frontend Angular se conecta directamente a la API
+            desplegada en <strong class="text-white">Google Cloud Run</strong>.
           </p>
           <div
             class="bg-slate-900 rounded-xl p-6 border border-white/10 mb-8 font-mono text-sm text-blue-300 overflow-x-auto"
           >
-            User Browser → Angular App → Nginx (Gateway) → FastAPI (Model
-            Inference) → PostgreSQL
+            <pre class="leading-relaxed">Cliente (Angular) → API REST (FastAPI)
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+         Módulo ECG            Módulo Sangre
+              │                       │
+         model.keras      bloodmnist_cnn.keras
+         (MIT-BIH)              (BloodMNIST)</pre>
           </div>
 
           <h3 class="text-xl font-semibold text-white mb-3 mt-8">
-            Componentes Principales
+            Stack tecnológico
           </h3>
-          <ul class="space-y-2 text-slate-300 mb-8">
-            <li class="flex items-start gap-3">
-              <span class="text-blue-500 mt-1">•</span>
-              <span
-                ><strong class="text-white">Frontend (Angular 17):</strong> Interfaz
-                de usuario con componentes standalone y signals para reactividad.</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-blue-500 mt-1">•</span>
-              <span
-                ><strong class="text-white">API Gateway (Nginx):</strong> Balanceo
-                de carga y proxy reverso para microservicios.</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-blue-500 mt-1">•</span>
-              <span
-                ><strong class="text-white">Servicio de Inferencia:</strong> FastAPI
-                con modelo TensorFlow para predicciones en tiempo real.</span
-              >
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-blue-500 mt-1">•</span>
-              <span
-                ><strong class="text-white">Base de Datos:</strong> PostgreSQL para
-                almacenamiento de historial y usuarios.</span
-              >
-            </li>
-          </ul>
+          <div class="overflow-x-auto mb-8">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-white/10">
+                  <th class="text-left py-2 px-4 text-slate-300 font-semibold">Capa</th>
+                  <th class="text-left py-2 px-4 text-slate-300 font-semibold">Tecnología</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-400">
+                <tr class="border-b border-white/5 hover:bg-white/5"><td class="py-2 px-4 text-white">Framework Frontend</td><td class="py-2 px-4">Angular 20 + TypeScript</td></tr>
+                <tr class="border-b border-white/5 hover:bg-white/5"><td class="py-2 px-4 text-white">Visualización</td><td class="py-2 px-4">Chart.js</td></tr>
+                <tr class="border-b border-white/5 hover:bg-white/5"><td class="py-2 px-4 text-white">API REST</td><td class="py-2 px-4">FastAPI + Uvicorn (ASGI)</td></tr>
+                <tr class="border-b border-white/5 hover:bg-white/5"><td class="py-2 px-4 text-white">Inteligencia Artificial</td><td class="py-2 px-4">TensorFlow / Keras</td></tr>
+                <tr class="border-b border-white/5 hover:bg-white/5"><td class="py-2 px-4 text-white">Validación de datos</td><td class="py-2 px-4">Pydantic</td></tr>
+                <tr class="border-b border-white/5 hover:bg-white/5"><td class="py-2 px-4 text-white">Contenedores</td><td class="py-2 px-4">Docker / Docker Compose</td></tr>
+                <tr class="hover:bg-white/5"><td class="py-2 px-4 text-white">Despliegue backend</td><td class="py-2 px-4">Google Cloud Run</td></tr>
+              </tbody>
+            </table>
+          </div>
 
           <!-- SECCIÓN INSTALACIÓN -->
           <h2 id="instalacion" class="text-2xl font-bold text-white mb-4 mt-12">
-            2. Instalación Local
+            3. Instalación Local
           </h2>
           <p class="mb-4 text-slate-300">
-            Para levantar el entorno de desarrollo, asegúrate de tener Docker
-            instalado.
+            El proyecto está contenerizado con Docker, lo que permite ponerlo en marcha en cualquier entorno
+            con un solo comando, sin depender de configuraciones locales.
           </p>
 
           <h3 class="text-xl font-semibold text-white mb-3 mt-6">
-            Requisitos Previos
+            Requisitos
           </h3>
           <ul class="space-y-2 text-slate-300 mb-6">
             <li class="flex items-center gap-3">
               <span class="text-green-500">✓</span>
-              Docker Desktop 4.0+
+              Python 3.12+ (ejecución directa)
             </li>
             <li class="flex items-center gap-3">
               <span class="text-green-500">✓</span>
-              Node.js 18+ (para desarrollo frontend)
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="text-green-500">✓</span>
-              Python 3.10+ (para desarrollo backend)
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="text-green-500">✓</span>
-              Git
+              Docker y Docker Compose (recomendado)
             </li>
           </ul>
 
+          <h3 class="text-xl font-semibold text-white mb-3 mt-6">Con Docker (Recomendado)</h3>
+          <div
+            class="bg-[#0d1117] rounded-xl p-4 border border-slate-800 overflow-x-auto mb-6"
+          >
+            <pre class="text-sm font-mono"><code><span class="text-slate-500"># Construir y ejecutar</span>
+<span class="text-purple-400">docker-compose</span> <span class="text-slate-300">up --build</span>
+
+<span class="text-slate-500"># En segundo plano</span>
+<span class="text-purple-400">docker-compose</span> <span class="text-slate-300">up -d --build</span>
+
+<span class="text-slate-500"># Detener</span>
+<span class="text-purple-400">docker-compose</span> <span class="text-slate-300">down</span></code></pre>
+          </div>
+
+          <h3 class="text-xl font-semibold text-white mb-3 mt-6">Sin Docker</h3>
           <div
             class="bg-[#0d1117] rounded-xl p-4 border border-slate-800 overflow-x-auto mb-8"
           >
-            <pre
-              class="text-sm font-mono"><code><span class="text-slate-500"># Clonar el repositorio</span>
-<span class="text-purple-400">git clone</span> <span class="text-slate-300">https://github.com/shim3z/pulse-ai.git</span>
+            <pre class="text-sm font-mono"><code><span class="text-purple-400">python</span> <span class="text-slate-300">-m venv .venv</span>
+<span class="text-purple-400">source</span> <span class="text-slate-300">.venv/bin/activate</span>  <span class="text-slate-500"># Linux/Mac</span>
 
-<span class="text-slate-500"># Entrar al directorio</span>
-<span class="text-purple-400">cd</span> <span class="text-slate-300">pulse-ai</span>
+<span class="text-purple-400">pip</span> <span class="text-slate-300">install -r requirements.txt</span>
 
-<span class="text-slate-500"># Levantar servicios</span>
-<span class="text-purple-400">docker-compose</span> <span class="text-slate-300">up --build</span></code></pre>
+<span class="text-purple-400">uvicorn</span> <span class="text-slate-300">main:app --host 0.0.0.0 --port 8000 --reload</span></code></pre>
           </div>
 
-          <!-- SECCIÓN MODELO IA -->
+          <!-- SECCIÓN MODELOS IA -->
           <h2 id="modelo-ia" class="text-2xl font-bold text-white mb-4 mt-12">
-            3. Modelo de Inteligencia Artificial
+            4. Modelos de Inteligencia Artificial
           </h2>
           <p class="mb-6 leading-relaxed text-slate-300">
-            El núcleo del sistema utiliza una Red Neuronal Convolucional (CNN)
-            entrenada con el dataset MIT-BIH Arrhythmia Database para detección
-            de arritmias cardíacas.
+            Al iniciar el servidor se cargan en memoria dos modelos de redes neuronales previamente entrenados.
+            El sistema está optimizado para ejecutarse completamente en <strong class="text-white">CPU</strong>,
+            sin necesidad de hardware especializado (GPU).
+          </p>
+
+          <h3 class="text-xl font-semibold text-white mb-3 mt-6">Modelo ECG — <code class="text-blue-300 text-base">model.keras</code></h3>
+          <p class="mb-4 text-slate-300 leading-relaxed">
+            Entrenado con datos reales de pacientes del dataset <strong class="text-white">MIT-BIH</strong>
+            (formato <code class="text-blue-300">.npz</code>). Clasifica señales cardíacas en latido Normal (N)
+            o Ventricular (V).
+          </p>
+
+          <h3 class="text-xl font-semibold text-white mb-3 mt-8">Modelo Células — <code class="text-blue-300 text-base">bloodmnist_cnn.keras</code></h3>
+          <p class="mb-6 text-slate-300 leading-relaxed">
+            CNN entrenada con el dataset <strong class="text-white">MedMNIST (BloodMNIST)</strong>.
+            Clasifica imágenes microscópicas en 8 tipos celulares. Devuelve el tipo de célula detectado,
+            su probabilidad de certeza y una explicación en lenguaje natural.
           </p>
 
           <div
             class="bg-linear-to-r from-blue-500/10 to-purple-500/10 rounded-xl p-6 border border-blue-500/20 mb-8"
           >
             <h4 class="text-white font-bold mb-4 flex items-center gap-2">
-              <!-- Cpu Icon -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="text-blue-400"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
                 <rect width="16" height="16" x="4" y="4" rx="2"></rect>
                 <rect width="6" height="6" x="9" y="9" rx="1"></rect>
-                <path d="M15 2v2"></path>
-                <path d="M15 20v2"></path>
-                <path d="M2 15h2"></path>
-                <path d="M2 9h2"></path>
-                <path d="M20 15h2"></path>
-                <path d="M20 9h2"></path>
-                <path d="M9 2v2"></path>
-                <path d="M9 20v2"></path>
+                <path d="M15 2v2"></path><path d="M15 20v2"></path>
+                <path d="M2 15h2"></path><path d="M2 9h2"></path>
+                <path d="M20 15h2"></path><path d="M20 9h2"></path>
+                <path d="M9 2v2"></path><path d="M9 20v2"></path>
               </svg>
-              Métricas del Modelo
+              Estructura del proyecto (backend)
             </h4>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-white">97.2%</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">
-                  Accuracy
-                </div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-white">96.8%</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">
-                  Precision
-                </div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-white">95.4%</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">
-                  Recall
-                </div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-white">96.1%</div>
-                <div class="text-xs text-slate-400 uppercase tracking-wide">
-                  F1-Score
-                </div>
-              </div>
+            <div class="font-mono text-sm text-slate-300 leading-relaxed">
+              <div><span class="text-slate-500">back_pulseAI/</span></div>
+              <div class="ml-4"><span class="text-blue-300">├── main.py</span> <span class="text-slate-500"># Lógica principal de la API</span></div>
+              <div class="ml-4"><span class="text-blue-300">├── requirements.txt</span></div>
+              <div class="ml-4"><span class="text-blue-300">├── Dockerfile</span></div>
+              <div class="ml-4"><span class="text-blue-300">├── docker-compose.yml</span></div>
+              <div class="ml-4"><span class="text-yellow-300">├── modelo/</span></div>
+              <div class="ml-8"><span class="text-green-300">├── model.keras</span> <span class="text-slate-500"># Modelo ECG</span></div>
+              <div class="ml-8"><span class="text-green-300">└── bloodmnist_cnn.keras</span> <span class="text-slate-500"># Modelo células</span></div>
+              <div class="ml-4"><span class="text-yellow-300">├── dataset/</span></div>
+              <div class="ml-8"><span class="text-slate-300">└── mitbih_nv_test_360_rr.npz</span></div>
+              <div class="ml-4"><span class="text-yellow-300">└── class_names/</span></div>
+              <div class="ml-8"><span class="text-slate-300">└── bloodmnist_class_names.npy</span></div>
             </div>
-          </div>
-
-          <h3 class="text-xl font-semibold text-white mb-3">
-            Arquitectura de la Red
-          </h3>
-          <div
-            class="bg-[#0d1117] rounded-xl p-4 border border-slate-800 overflow-x-auto mb-8"
-          >
-            <pre
-              class="text-sm font-mono"><code><span class="text-purple-400">model</span> = <span class="text-blue-400">Sequential</span>([
-    <span class="text-blue-400">Conv1D</span>(<span class="text-yellow-400">64</span>, <span class="text-yellow-400">3</span>, activation=<span class="text-green-400">'relu'</span>, input_shape=(187, 1)),
-    <span class="text-blue-400">MaxPooling1D</span>(<span class="text-yellow-400">2</span>),
-    <span class="text-blue-400">Conv1D</span>(<span class="text-yellow-400">128</span>, <span class="text-yellow-400">3</span>, activation=<span class="text-green-400">'relu'</span>),
-    <span class="text-blue-400">MaxPooling1D</span>(<span class="text-yellow-400">2</span>),
-    <span class="text-blue-400">Flatten</span>(),
-    <span class="text-blue-400">Dense</span>(<span class="text-yellow-400">128</span>, activation=<span class="text-green-400">'relu'</span>),
-    <span class="text-blue-400">Dropout</span>(<span class="text-yellow-400">0.5</span>),
-    <span class="text-blue-400">Dense</span>(<span class="text-yellow-400">5</span>, activation=<span class="text-green-400">'softmax'</span>)
-])</code></pre>
           </div>
 
           <!-- SECCIÓN API ENDPOINTS -->
@@ -402,26 +434,13 @@ const tableOfContents = [
             </div>
           </div>
 
-          <!-- EJEMPLO DE REQUEST -->
-          <h3 class="text-xl font-semibold text-white mb-3">
-            Ejemplo de Request
-          </h3>
-          <div
-            class="bg-[#0d1117] rounded-xl p-4 border border-slate-800 overflow-x-auto mb-8"
-          >
-            <pre
-              class="text-sm font-mono"><code><span class="text-purple-400">curl</span> -X POST <span class="text-green-400">"https://api.pulseai.dev/v1/predict/ecg"</span> \
-  -H <span class="text-green-400">"Authorization: Bearer {"{token}"}"</span> \
-  -H <span class="text-green-400">"Content-Type: application/json"</span> \
-  -d <span class="text-yellow-400">'{"{"}"ecg_data": [0.12, 0.45, ...], "sampling_rate": 360{"}"}'</span></code></pre>
-          </div>
 
           <!-- FOOTER DE DOCS -->
           <div
             class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
           >
             <p class="text-slate-500 text-sm">
-              Última actualización: Diciembre 2025
+              Última actualización: Marzo 2026 · v2.0
             </p>
             <div class="flex gap-4">
               <a
