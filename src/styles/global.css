@@ -8,11 +8,3 @@
 body {
   overflow-x: hidden;
 }
-
-/* Line clamp utility para texto truncado */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}

@@ -79,6 +79,8 @@ const navItems = [
     <button
       id="mobile-toggle"
       class="md:hidden p-3 rounded-full text-slate-300 hover:bg-white/10 ml-2"
+      aria-label="Abrir menú"
+      aria-expanded="false"
     >
       <svg
         id="menu-icon"
@@ -118,7 +120,7 @@ const navItems = [
   <!-- Mobile Menu Dropdown -->
   <div
     id="mobile-menu"
-    class="hidden absolute top-full mt-4 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex-col gap-2 shadow-2xl w-64"
+    class="hidden md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-4 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex-col gap-2 shadow-2xl w-64"
   >
     <a
       href="#about"
@@ -160,11 +162,13 @@ const navItems = [
         mobileMenu?.classList.add("flex");
         menuIcon?.classList.add("hidden");
         closeIcon?.classList.remove("hidden");
+        mobileToggle.setAttribute("aria-expanded", "true");
       } else {
         mobileMenu?.classList.add("hidden");
         mobileMenu?.classList.remove("flex");
         menuIcon?.classList.remove("hidden");
         closeIcon?.classList.add("hidden");
+        mobileToggle.setAttribute("aria-expanded", "false");
       }
     });
 
@@ -175,6 +179,7 @@ const navItems = [
         mobileMenu?.classList.remove("flex");
         menuIcon?.classList.remove("hidden");
         closeIcon?.classList.add("hidden");
+        mobileToggle?.setAttribute("aria-expanded", "false");
       });
     });
 
@@ -206,25 +211,15 @@ const navItems = [
 
         // Remover todas las clases
         link.classList.remove("bg-white/10", "text-white", "shadow-inner");
-        link.classList.remove("bg-blue-600", "shadow-lg", "shadow-blue-500/25");
         link.classList.remove(
           "text-slate-400",
-          "bg-slate-800",
-          "text-slate-300",
           "opacity-100",
           "opacity-80"
         );
 
         if (linkSection === activeSection) {
           // Aplicar estilos activos
-          if (linkSection === "docs") {
-            link.classList.add(
-              "bg-blue-600",
-              "text-white",
-              "shadow-lg",
-              "shadow-blue-500/25"
-            );
-          } else if (linkSection === "about") {
+          if (linkSection === "about") {
             // Para el logo, solo aumentar opacidad
             link.classList.add("opacity-100");
           } else {
@@ -232,9 +227,7 @@ const navItems = [
           }
         } else {
           // Aplicar estilos inactivos
-          if (linkSection === "docs") {
-            link.classList.add("bg-slate-800", "text-slate-300");
-          } else if (linkSection === "about") {
+          if (linkSection === "about") {
             // Para el logo, reducir opacidad
             link.classList.add("opacity-80");
           } else {

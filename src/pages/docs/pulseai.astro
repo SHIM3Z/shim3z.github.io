@@ -354,7 +354,7 @@ const tableOfContents = [
             id="api-endpoints"
             class="text-2xl font-bold text-white mb-4 mt-12"
           >
-            4. API Endpoints
+            5. API Endpoints
           </h2>
           <p class="mb-6 leading-relaxed text-slate-300">
             La API REST está documentada con OpenAPI/Swagger y expone los
@@ -499,6 +499,10 @@ const tableOfContents = [
           currentSection = section.id;
         }
       });
+
+      if (!currentSection && sections.length > 0) {
+        currentSection = sections[0].id;
+      }
 
       sidebarLinks.forEach((link) => {
         const href = link.getAttribute("href");
